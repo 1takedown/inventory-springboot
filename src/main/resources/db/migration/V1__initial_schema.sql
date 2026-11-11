@@ -1,0 +1,44 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  modified_at TEXT,
+  modified_by TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  created_by TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  description TEXT,
+  quantity INTEGER DEFAULT 0 NOT NULL,
+  cost REAL NOT NULL,
+  profit REAL NOT NULL,
+  barcode TEXT UNIQUE,
+  modified_at TEXT,
+  modified_by TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  created_by TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  text TEXT NOT NULL,
+  modified_at TEXT,
+  modified_by TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  created_by TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+  item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE RESTRICT,
+  quantity INTEGER NOT NULL,
+  paid_amount REAL NOT NULL,
+  modified_at TEXT,
+  modified_by TEXT,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  created_by TEXT NOT NULL
+);

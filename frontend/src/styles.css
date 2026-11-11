@@ -1,0 +1,31 @@
+body {
+  min-width: 320px;
+}
+
+.app-table {
+  min-width: 720px;
+}
+
+.scanner-input {
+  font-size: 1.25rem;
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+.dashboard-card .h4 {
+  overflow-wrap: anywhere;
+}
+
+.item-combobox {
+  position: relative;
+}
+
+.item-combobox-menu {
+  inset: calc(100% + 0.25rem) 0 auto;
+  max-height: 18rem;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 1050;
+}
